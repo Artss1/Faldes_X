@@ -414,6 +414,6 @@ function Faldes_X.ShowNotification(windowObj, text)
     task.wait(0.5)
     notification:Destroy()
 end
-
+Faldes_X.ShowNotification("Faldes_X UI by Arts!")
 return Faldes_X
 
