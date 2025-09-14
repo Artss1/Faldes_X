@@ -1,0 +1,136 @@
+-- Загрузчик
+
+local ScreenGui = Instance.new("ScreenGui")
+local LoadFrame = Instance.new("Frame")
+local LoadFrame_2 = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local l = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+LoadFrame.Name = "LoadFrame"
+LoadFrame.Parent = ScreenGui
+LoadFrame.BackgroundColor3 = Color3.fromRGB(98, 98, 98)
+LoadFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LoadFrame.BorderSizePixel = 0
+LoadFrame.Position = UDim2.new(0.326484025, 0, 0.426035494, 0)
+LoadFrame.Size = UDim2.new(0, 509, 0, 170)
+LoadFrame.Visible = false
+
+LoadFrame_2.Name = "LoadFrame"
+LoadFrame_2.Parent = LoadFrame
+LoadFrame_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+LoadFrame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LoadFrame_2.BorderSizePixel = 0
+LoadFrame_2.Position = UDim2.new(-0.00161029689, 0, -0.103585094, 0)
+LoadFrame_2.Size = UDim2.new(0, 509, 0, 24)
+
+TextLabel.Parent = LoadFrame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.0903732777, 0, 0.100000001, 0)
+TextLabel.Size = UDim2.new(0, 418, 0, 136)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = ""
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 1.000
+
+l.Name = "l"
+l.Parent = TextLabel
+l.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+l.BackgroundTransparency = 1.000
+l.BorderColor3 = Color3.fromRGB(0, 0, 0)
+l.BorderSizePixel = 0
+l.Position = UDim2.new(-0.356995225, 0, 0.394117683, 0)
+l.Size = UDim2.new(0, 418, 0, 136)
+l.Font = Enum.Font.SourceSans
+l.Text = "Loading"
+l.TextColor3 = Color3.fromRGB(0, 0, 0)
+l.TextSize = 20.000
+
+TextLabel_2.Parent = TextLabel
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(-0.000535882835, 0, -0.127941132, 0)
+TextLabel_2.Size = UDim2.new(0, 418, 0, 136)
+TextLabel_2.Font = Enum.Font.SourceSansBold
+TextLabel_2.Text = "Faldes_X"
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextSize = 50.000
+
+TextLabel_3.Parent = TextLabel
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.Position = UDim2.new(0.198028713, 0, 0.122058868, 0)
+TextLabel_3.Size = UDim2.new(0, 418, 0, 136)
+TextLabel_3.Font = Enum.Font.SourceSansBold
+TextLabel_3.Text = "By Arts"
+TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.TextSize = 15.000
+
+-- Scripts:
+
+local function AIJHFIK_fake_script() -- LoadFrame.LocalScript 
+	local script = Instance.new('LocalScript', LoadFrame)
+
+	local LoadWn = script.Parent
+	local TextLabel = LoadWn:FindFirstChild("TextLabel").l -- предполагается, что есть TextLabel внутри LoadWn
+	
+	local function FadeIn(object, duration)
+		local steps = 20
+		local waitTime = duration / steps
+		for i = 1, steps do
+			local transparency = 1 - (i / steps)
+			object.BackgroundTransparency = transparency
+			wait(waitTime)
+		end
+		object.BackgroundTransparency = 0
+	end
+	
+	local function FadeOut(object, duration)
+		local steps = 20
+		local waitTime = duration / steps
+		for i = 1, steps do
+			local transparency = i / steps
+			object.BackgroundTransparency = transparency
+			wait(waitTime)
+		end
+		object.BackgroundTransparency = 1
+	end
+	
+	local function Load()
+		-- Появление
+		FadeIn(LoadWn, 0.5)  -- Пример: 0.5 секунд для появления
+		LoadWn.Visible = true
+	
+		-- Имитация загрузки с прогрессом
+		for progress = 0, 100 do
+			-- Обновляем прогресс в TextLabel
+			if TextLabel then
+				TextLabel.Text = "Loading: " .. progress .. "%"
+			end
+			-- Дополнительно: можно вставлять задержки, если хотите реальную задержку
+			wait(0.08)
+		end
+	
+		-- Обратный отсчёт или подтверждение завершения загрузки
+		-- например, можно подождать или выполнить другие действия
+	
+		-- Исчезновение
+		FadeOut(LoadWn, 0.5)
+		LoadWn.Visible = false
+	end
+	
+	Load()
+end
+coroutine.wrap(AIJHFIK_fake_script)()
