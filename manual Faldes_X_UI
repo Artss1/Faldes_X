@@ -1,4 +1,4 @@
-local Faldes_X = loadstring(game:HttpGet("https://raw.githubusercontent.com/Artss1/Faldes_X/refs/heads/main/LoadWindow"))()
+local Faldes_X = loadstring(game:HttpGet("https://raw.githubusercontent.com/Artss1/Faldes_X/refs/heads/main/Faldes_UI"))()
 local UserInputService = game:GetService("UserInputService")
 
 
