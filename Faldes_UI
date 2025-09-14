@@ -3,7 +3,7 @@
     Develover: Arts
     Version: 1.2.0
     Date: 14/9/25
-    Инструкция по использыванию:
+    manual UI: https://github.com/Artss1/Faldes_X/blob/main/manual%20Faldes_X_UI
 ]]
 
 local Faldes_X = {}
