@@ -1,4 +1,4 @@
-local Faldes_X = require(game:GetService("ReplicatedStorage"):WaitForChild("Faldes_X_Module"))
+local Faldes_X = loadstring(game:HttpGet("https://raw.githubusercontent.com/Artss1/Faldes_X/refs/heads/main/LoadWindow"))()
 local UserInputService = game:GetService("UserInputService")
 
 
