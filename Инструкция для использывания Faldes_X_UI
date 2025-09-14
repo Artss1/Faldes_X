@@ -1,0 +1,107 @@
+local Faldes_X = require(game:GetService("ReplicatedStorage"):WaitForChild("Faldes_X_Module"))
+local UserInputService = game:GetService("UserInputService")
+
+
+-- Создания Окна
+local window = Faldes_X.CreateWindow({
+    Name = "Faldes_X",
+    Title = "Faldes_X by Arts",
+})
+
+-- Создание Tab
+local tab1, tabWindow1 = Faldes_X.CreateTab(window, {
+    Name = "MainTab",
+    Text = "Главная"
+})
+-- Создание Кнопки в tab1
+local button = Faldes_X.CreateButton(tabWindow1, {
+    Name = "DemoButton",
+    Text = "Нажми меня",
+	OnClick = function()
+		-- тут ваш код
+        print("Button clicked!")
+        Faldes_X.ShowNotification(window, "Кнопка была нажата!")
+    end
+})
+
+-- Toggle в tab1
+local toggle = Faldes_X.CreateToggle(tabWindow1, {
+    Name = "DemoToggle",
+    Text = "Включить/Выключить",
+	OnToggle = function(state)
+		-- тут ваш код
+        print("Toggle state:", state)
+        Faldes_X.ShowNotification(window, "Тоггл: " .. (state and "Включено" or "Выключено"))
+    end
+})
+-- Слайдер в tab1
+local slider = Faldes_X.CreateSlider(tabWindow1, {
+    Name = "DemoSlider",
+    Text = "Слайдер",
+    Min = 0,
+    Max = 100,
+    Value = 50,
+	OnChange = function(val)
+		-- тут ваш код
+        print("Slider value:", val)
+    end
+})
+
+-- Текст в tab1
+Faldes_X.CreateText(tabWindow1, {
+    Text = "Пример использования Faldes_X UI"
+})
+
+-- Внимание этот таб важно добавить! это настройка UI и лучше его не убирать ТК она будет обновляться
+local tab2, tabWindow2 = Faldes_X.CreateTab(window, {
+    Name = "SettingsTab",
+    Text = "Настройки"
+})
+
+local themeLabel = Faldes_X.CreateText(tabWindow2, {
+    Text = "Выберите тему:"
+})
+
+local themeButtonDefault = Faldes_X.CreateButton(tabWindow2, {
+    Name = "ThemeDefault",
+    Text = "Стандартная",
+    OnClick = function()
+        Faldes_X.SetTheme(window, "Default")
+        Faldes_X.ShowNotification(window, "Тема: Стандартная")
+    end
+})
+
+local themeButtonDark = Faldes_X.CreateButton(tabWindow2, {
+    Name = "ThemeDark",
+    Text = "Тёмная",
+    OnClick = function()
+        Faldes_X.SetTheme(window, "Dark")
+        Faldes_X.ShowNotification(window, "Тема: Тёмная")
+    end
+})
+
+local themeButtonLight = Faldes_X.CreateButton(tabWindow2, {
+    Name = "ThemeLight",
+    Text = "Светлая",
+    OnClick = function()
+        Faldes_X.SetTheme(window, "Light")
+        Faldes_X.ShowNotification(window, "Тема: Светлая")
+    end
+})
+
+Faldes_X.CreateText(tabWindow2, {
+    Text = "Нажмите M чтобы открыть/закрыть меню"
+})
+---------------------------------------------------------------------------------------------------------------------
+
+UserInputService.InputBegan:Connect(function(input, processed) -- Бинд для открытия меню
+    if processed then return end
+    if input.KeyCode == Enum.KeyCode.M then
+        window.Window.Visible = not window.Window.Visible
+        Faldes_X.ShowNotification(window, window.Window.Visible and "Меню открыто" or "Меню скрыто")
+    end
+end)
+
+
+Faldes_X.ShowNotification(window, "Добро пожаловать в Faldes_X UI!") -- Уведомление
+
