@@ -1,0 +1,37 @@
+local function LoadFromGitHub(url)
+    local success, response = pcall(function()
+        return game:HttpGet(url)
+    end)
+
+    if success then
+        local runSuccess, runError = pcall(function()
+            loadstring(response)()
+        end)
+
+        if not runSuccess then
+            warn("❌ Script execution failed:", runError)
+        end
+    else
+        warn("❌ Failed to fetch script:", response)
+    end
+end
+
+local SupportedGames = {
+
+    -- Be A Parkour Ninja
+    [147848991] = function()
+        LoadFromGitHub("https://raw.githubusercontent.com/2xrW/Be-A-Parkour-Ninja/refs/heads/main/Beta")
+    end,
+
+
+}
+
+local PlaceId = game.PlaceId
+
+if SupportedGames[PlaceId] then
+    print("✅ Supported game detected! Executing script for ID:", PlaceId)
+    SupportedGames[PlaceId]()
+else
+    warn("❌ Unsupported game ID:", PlaceId)
+    warn("Faldes_X Loader by arts :>")
+end
